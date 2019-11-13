@@ -2,6 +2,7 @@
 <%@ page import ="javaclasses.Message" %>
 <%@ page import ="javaclasses.UserInfo" %>
 <%@ page import ="javaclasses.DatabaseHandler" %>
+<%@ page import ="javaclasses.GameState" %>
 
 <html>
    <head>
@@ -10,11 +11,10 @@
 
    <body>
 
-
-
             <%
             List messages=DatabaseHandler.getMessagesList();
-            UserInfo s=(UserInfo) session.getAttribute("userinfo");
+            UserInfo ui=(UserInfo) session.getAttribute("userinfo");
+            GameState gs=(GameState) session.getAttribute("gamestate");
             out.println("<br>Messages: <br><br>");
             %>
 
@@ -26,7 +26,14 @@
              </form>
              <br><br><br>
 
-             <jsp:include page="canva.jsp" />
+
+             <% if(ui.getLogin().equals(gs.getDrawing())){ %>
+               <jsp:include page="canva.jsp" />
+
+             <% }
+             else {%>
+             <jsp:include page="picture.jsp" />
+             <% } %>
 
    </body>
 </html>

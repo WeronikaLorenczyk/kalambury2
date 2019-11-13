@@ -67,6 +67,7 @@ function erase() {
     if (m) {
         ctx.clearRect(0, 0, w, h);
         document.getElementById('canvasimg').style.display = 'none';
+        save2();
     }
 }
 
@@ -91,13 +92,6 @@ function save2(){
 
 }
 
-function savebyform(){
-
-var form = document.getElementById('form');
-var dataURL = canvas.toDataURL();
-form.canvasURL.value=dataURL;
-
-}
 
 function findxy(res, e) {
     if (res == 'down') {
@@ -136,11 +130,6 @@ function findxy(res, e) {
 </head>
 <body onload='init()'>
 
-<form action = "canvahandler" method = "POST" onsubmit="savebyform()" id="form">
-             Message: <input type = "text" name = "canvasURL" id="cavasURL">
-             <input type = "submit" value = "Submit" />
-             </form>
-
 
     <canvas id='can' width='400' height='400' style='border:2px solid;'></canvas>
     <div >Choose Color</div>
@@ -152,7 +141,7 @@ function findxy(res, e) {
     <div style='width:10px;height:10px;background:black;' id='black' onclick='color(this)'></div>
     <div >Eraser</div>
     <div style='width:15px;height:15px;background:white;border:2px solid;' id='white' onclick='color(this)'></div>
-    <img id='canvasimg' style='position:absolute;top:10%;left:52%;' style='display:none;'>
+
     <input type='button' value='save' id='btn' size='30' onclick='save()' >
     <input type='button' value='clear' id='clr' size='23' onclick='erase()' >
 </body>

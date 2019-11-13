@@ -22,7 +22,7 @@ public class Login extends HttpServlet {
         if(uexist){
             UserInfo realui = DatabaseHandler.getUser(ui.getLogin());
             req.getSession().setAttribute("userinfo",realui);
-            RequestDispatcher view = req.getRequestDispatcher("main.jsp");
+            RequestDispatcher view = req.getRequestDispatcher("selectgame.jsp");
             view.forward(req, resp);
         }
         else{

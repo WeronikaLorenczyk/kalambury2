@@ -25,6 +25,11 @@
     <servlet-class>servlets.CanvaHandler</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>selectgame</servlet-name>
+    <servlet-class>servlets.SelectGame</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>sendmessage</servlet-name>
     <url-pattern>/sendmessage</url-pattern>
@@ -44,6 +49,11 @@
   <servlet-mapping>
     <servlet-name>canvahandler</servlet-name>
     <url-pattern>/canvahandler</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>selectgame</servlet-name>
+    <url-pattern>/selectgame</url-pattern>
   </servlet-mapping>
 
 </web-app>
