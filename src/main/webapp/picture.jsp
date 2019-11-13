@@ -9,7 +9,7 @@ function init() {
 
     canvas = document.getElementById('can');
         ctx = canvas.getContext('2d');
-       
+
         var myURL=<%= CanvaHandler.getCanvaURL()  %>;
 
          if(myURL != null){
