@@ -17,9 +17,9 @@ public class SendMessage extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException, ServletException {
 
-        resp.getWriter().print("Hello from servlet");
         UserInfo info=(UserInfo) req.getSession().getAttribute("userinfo");
         Message newmessage=new Message(req.getParameter("mess"),info.getLogin(), new Date(System.currentTimeMillis()));
+        if(!newmessage.mess.equals("null"))
         DatabaseHandler.addMessage(newmessage);
 
         RequestDispatcher view = req.getRequestDispatcher("main.jsp");

@@ -20,13 +20,28 @@ function init() {
          h = canvas.height;
         load();
 
-
-      setInterval(load,1000);
+      setInterval(load,500);
 
 }
-
+var myURL;
 function load(){
- var myURL=<%= CanvaHandler.getCanvaURL()  %>;
+
+
+var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            myURL = xhr.responseText;
+
+        }
+    }
+    xhr.open('POST', 'canvahandler', false);
+    xhr.send(null);
+
+    myURL=decodeURIComponent(myURL)
+
+
+
+
           ctx.clearRect(0, 0, w, h);
 
          if(myURL != null){

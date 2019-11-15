@@ -11,7 +11,6 @@ var select=document.getElementById('selectgame');
 
 <% List<GameState> mylist =GameState.gamestatelist;
     for(GameState t : mylist){%>
-        alert(<%= t.getGamenamewith()%>);
         var opt = document.createElement('option');
         opt.value = <%= t.getGamenamewith()%>;
         opt.innerHTML = opt.value;
