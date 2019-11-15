@@ -4,22 +4,42 @@
 <%@ page import ="javaclasses.DatabaseHandler" %>
 <%@ page import ="javaclasses.GameState" %>
 
+
+
 <html>
+
    <head>
       <title>Messenger</title>
+
+
+      <script>
+
+      function init(){
+      alert('a');
+      reload();
+      console.log("a");
+      setInterval(reload,1000);
+      }
+
+      function reload(){
+      var iframe = document.getElementById('iframe');
+      iframe.src = "./messagespage.jsp";
+      console.log("a");
+      }
+
+      </script>
    </head>
 
-   <body>
+   <body onload='init()'>
 
             <%
-            List messages=DatabaseHandler.getMessagesList();
             UserInfo ui=(UserInfo) session.getAttribute("userinfo");
             GameState gs=(GameState) session.getAttribute("gamestate");
             System.out.println(gs.getGamename());
             out.println("<br>Messages: <br><br>");
             %>
 
-            <iframe src="./messagespage.jsp" height="200" width="300"></iframe>
+            <iframe id="iframe" src="./messagespage.jsp" height="200" width="300"></iframe>
 
             <form action = "sendmessage" method = "POST">
              Message: <input type = "text" name = "mess">
@@ -29,11 +49,13 @@
 
 
              <% if(ui.getLogin().equals(gs.getDrawing())){ %>
-               <jsp:include page="canva.jsp" />
+             <iframe style="border:none;" src="./canva.jsp" height="700" width="500"></iframe>
+
 
              <% }
              else {%>
-             <jsp:include page="picture.jsp" />
+             <iframe style="border:none;" src="./picture.jsp" height="500" width="500" ></iframe>
+
              <% } %>
 
    </body>

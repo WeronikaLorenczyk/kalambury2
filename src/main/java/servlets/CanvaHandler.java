@@ -18,7 +18,7 @@ public class CanvaHandler extends HttpServlet {
             canvaURL=newURL;
         else if(canvaURL != null){
 
-            String result="'"+canvaURL+"'";
+            String result;
              result = URLEncoder.encode(canvaURL, "UTF-8")
                     .replaceAll("\\+", "%20")
                     .replaceAll("\\%21", "!")
@@ -29,7 +29,6 @@ public class CanvaHandler extends HttpServlet {
 
             resp.setContentType("text/plain");
             resp.setCharacterEncoding("UTF-8");
-            System.out.println("'"+canvaURL+"'");
             resp.getWriter().write(result);
         }
 

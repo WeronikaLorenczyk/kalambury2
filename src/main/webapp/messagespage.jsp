@@ -5,23 +5,24 @@
 
 <html>
    <head>
+
       <title>Messenger</title>
    </head>
 
-   <body>
-            <%
-            List messages=DatabaseHandler.getMessagesList();
-            UserInfo s=(UserInfo) session.getAttribute("userinfo");
-            for(Object o : messages){
-                Message m = (Message) o;
-                if(m.nick.equals(s.getLogin())){
-                    out.println("<p style='border:2px solid tomato;' align='right'>"+m.nick+": "+m.mess+"</p>");
-                }
-                else{
-                    out.println("<p style='border:2px solid Violet;'>"+m.nick+": "+m.mess+"</p>");
-                }
-            }
-            %>
+   <body >
+
+  <% out.clear();
+                    List messages=DatabaseHandler.getMessagesList();
+                    UserInfo s=(UserInfo) session.getAttribute("userinfo");
+                    for(Object o : messages){
+                        Message m = (Message) o;
+                        if(m.nick.equals(s.getLogin())){
+                            out.println("<p style='border:2px solid tomato;' align='right'>"+m.nick+": "+m.mess+"</p>");
+                        }
+                        else{
+                            out.println("<p style='border:2px solid Violet;'>"+m.nick+": "+m.mess+"</p>");
+                        }
+                    }%>
 
    </body>
 </html>

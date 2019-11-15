@@ -20,7 +20,7 @@ function init() {
          h = canvas.height;
         load();
 
-      setInterval(load,500);
+      setInterval(load,20);
 
 }
 var myURL;
@@ -41,13 +41,11 @@ var xhr = new XMLHttpRequest();
 
 
 
-
-          ctx.clearRect(0, 0, w, h);
-
          if(myURL != null){
 
             var img = new Image();
             img.onload = function() {
+            ctx.clearRect(0, 0, w, h);
                ctx.drawImage(img, 0, 0);
             };
             img.src = myURL;
