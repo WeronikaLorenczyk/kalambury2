@@ -39,7 +39,6 @@ public class SelectGame extends HttpServlet {
         RequestDispatcher view = req.getRequestDispatcher("main.jsp");
         view.forward(req, resp);
 
-
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp)

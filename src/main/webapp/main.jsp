@@ -15,6 +15,7 @@
             List messages=DatabaseHandler.getMessagesList();
             UserInfo ui=(UserInfo) session.getAttribute("userinfo");
             GameState gs=(GameState) session.getAttribute("gamestate");
+            System.out.println(gs.getGamename());
             out.println("<br>Messages: <br><br>");
             %>
 
