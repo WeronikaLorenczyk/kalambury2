@@ -1,14 +1,12 @@
 package javaclasses;
 
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class DatabaseHandler {
 
     static HashMap<String, UserInfo> users=new HashMap<>();
-    static ArrayList<Message> messagesList = new ArrayList<>();
+
 
     static {
         users.put("a",new UserInfo("a","a"));
@@ -34,13 +32,6 @@ public class DatabaseHandler {
         return users.get(login);
     }
 
-    public static void addMessage (Message m){
-        messagesList.add(m);
-    }
-
-    public static List<Message> getMessagesList (){
-        return messagesList;
-    }
 
 
 }

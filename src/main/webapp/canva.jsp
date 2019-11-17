@@ -1,5 +1,6 @@
 
 <%@ page import ='servlets.CanvaHandler' %>
+<%@ page import ='javaclasses.GameState' %>
 <html>
 <head>
 <script>
@@ -14,11 +15,15 @@ var x = 'black',
     y = 2;
 
 function init() {
+        <%
+            GameState gs=(GameState) session.getAttribute("gamestate");
+            System.out.println(gs.getGamename());
+            %>
     canvas = document.getElementById('can');
     ctx = canvas.getContext('2d');
     w = canvas.width;
     h = canvas.height;
-    var myURL=<%= CanvaHandler.getCanvaURL()  %>;
+    var myURL=<%= gs.picture.getCanvaURL()  %>;
 
      if(myURL != null){
 
@@ -75,7 +80,7 @@ function save() {
     save2();
     document.getElementById('canvasimg').style.border = '2px solid';
     var dataURL = canvas.toDataURL();
-    var mydataURL = <%= CanvaHandler.getCanvaURL()  %>;
+    var mydataURL = <%= gs.picture.getCanvaURL()  %>;
 
     document.getElementById('canvasimg').src = mydataURL;
     document.getElementById('canvasimg').style.display = 'inline';

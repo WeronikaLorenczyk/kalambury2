@@ -1,5 +1,7 @@
 package servlets;
 
+import javaclasses.GameState;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,17 +11,18 @@ import java.net.URLEncoder;
 
 public class CanvaHandler extends HttpServlet {
 
-    static String canvaURL=null;
+   public  String canvaURL=null;
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String newURL=req.getParameter("canvasURL");
+        GameState gs = (GameState) req.getSession().getAttribute("gamestate");
         if(newURL != null)
-            canvaURL=newURL;
-        else if(canvaURL != null){
+            gs.picture.canvaURL=newURL;
+        else if(gs!= null && gs.picture.canvaURL != null){
 
             String result;
-             result = URLEncoder.encode(canvaURL, "UTF-8")
+             result = URLEncoder.encode(gs.picture.canvaURL, "UTF-8")
                     .replaceAll("\\+", "%20")
                     .replaceAll("\\%21", "!")
                     .replaceAll("\\%27", "'")
@@ -39,16 +42,12 @@ public class CanvaHandler extends HttpServlet {
         doGet(req,resp);
     }
 
-    public static String getCanvaURL(){
+    public  String getCanvaURL(){
         if(canvaURL == null){
             return null;
         }
         String a="'"+canvaURL+"'";
-        System.out.println("!!!!!!!!"+a);
         return a;
     }
 
-    public static void setCanvaURL(String canvaURL) {
-        CanvaHandler.canvaURL = canvaURL;
-    }
 }

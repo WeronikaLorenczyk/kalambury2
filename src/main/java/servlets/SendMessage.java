@@ -1,6 +1,6 @@
 package servlets;
 
-import javaclasses.DatabaseHandler;
+import javaclasses.GameState;
 import javaclasses.Message;
 import javaclasses.UserInfo;
 
@@ -18,12 +18,25 @@ public class SendMessage extends HttpServlet {
             throws IOException, ServletException {
 
         UserInfo info=(UserInfo) req.getSession().getAttribute("userinfo");
+        GameState gs= (GameState) req.getSession().getAttribute("gamestate");
         Message newmessage=new Message(req.getParameter("mess"),info.getLogin(), new Date(System.currentTimeMillis()));
-        if(!newmessage.mess.equals("null"))
-        DatabaseHandler.addMessage(newmessage);
+        if(newmessage.mess != null ){
+            if(!newmessage.mess.equals(""))
+                gs.addMessage(newmessage);
+            RequestDispatcher view = req.getRequestDispatcher("main.jsp");
+            view.forward(req, resp);
+        }
+        else {
 
-        RequestDispatcher view = req.getRequestDispatcher("main.jsp");
-        view.forward(req, resp);
+            String result = "0";
+            if (info.reload) {
+                result = "1";
+                info.reload=false;
+            }
+
+            resp.getWriter().write(result);
+
+        }
 
     }
 

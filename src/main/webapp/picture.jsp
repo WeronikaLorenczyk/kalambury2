@@ -39,8 +39,6 @@ var xhr = new XMLHttpRequest();
 
     myURL=decodeURIComponent(myURL)
 
-
-
          if(myURL != null){
 
             var img = new Image();

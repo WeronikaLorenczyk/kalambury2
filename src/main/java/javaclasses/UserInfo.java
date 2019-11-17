@@ -4,6 +4,7 @@ public class UserInfo {
     String login;
     String password;
     Integer age;
+    public boolean reload=false;
 
     public UserInfo( String l, String p) {
         login=l;
