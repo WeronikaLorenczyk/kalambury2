@@ -8,19 +8,16 @@
 
 <script>
 
-function fillform(){
-
-var select=document.getElementById('selectgame');
-
-<% List<GameState> mylist =GameState.gamestatelist;
-    for(GameState t : mylist){%>
-        var opt = document.createElement('option');
-        opt.value = <%= t.getGamenamewith()%>;
-        opt.innerHTML = opt.value;
-        select.appendChild(opt);
-    <%}%>
-
-}
+    function fillform(){
+        var select=document.getElementById('selectgame');
+        <% List<GameState> mylist =GameState.gamestatelist;
+        for(GameState t : mylist){%>
+            var opt = document.createElement('option');
+            opt.value = <%= t.getGamenamewith()%>;
+            opt.innerHTML = opt.value;
+            select.appendChild(opt);
+        <%}%>
+    }
 
 </script>
 
@@ -38,9 +35,8 @@ var select=document.getElementById('selectgame');
 
     <h4> Select game <br></h4>
     <form action = "selectgame" method = "POST"  >
-    <select  id="selectgame" name="gamename">
-    </select>
-    <input type = "submit" value = "Select" />
+        <select  id="selectgame" name="gamename"></select>
+        <input type = "submit" value = "Select" />
     </form>
 
 

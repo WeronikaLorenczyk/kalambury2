@@ -15,10 +15,10 @@ var x = 'black',
     y = 2;
 
 function init() {
-        <%
-            GameState gs=(GameState) session.getAttribute("gamestate");
-            System.out.println(gs.getGamename());
-            %>
+    <%
+        GameState gs=(GameState) session.getAttribute("gamestate");
+        System.out.println(gs.getGamename());
+     %>
     canvas = document.getElementById('can');
     ctx = canvas.getContext('2d');
     w = canvas.width;

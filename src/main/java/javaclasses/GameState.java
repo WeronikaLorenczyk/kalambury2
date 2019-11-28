@@ -3,9 +3,9 @@ package javaclasses;
 import servlets.CanvaHandler;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+
 
 public class GameState {
     public static ArrayList<GameState> gamestatelist= new ArrayList<>();
@@ -13,11 +13,12 @@ public class GameState {
         gamestatelist.add(new GameState("example"));
     }
 
+    final Integer ROUND_LEN=20;
+
      public String word;
-     int drawingplayer=0;
+     public int drawingplayer=0;
      String gamename;
-     HashMap<String,Integer> playerspoints;
-     ArrayList<String> players;
+    public ArrayList<String> players;
     public CanvaHandler picture;
     ArrayList<Message> messagesList = new ArrayList<>();
     public AtomicInteger time=new AtomicInteger(10);
@@ -25,11 +26,10 @@ public class GameState {
 
      public GameState(String n){
          gamename=n;
-         playerspoints= new HashMap<>();
          players=new ArrayList<>();
          word=getnextword();
          picture=new CanvaHandler();
-         time.set(10);
+         time.set(ROUND_LEN);
          thread.start();
      }
 
@@ -50,9 +50,10 @@ public class GameState {
          return "kot";
      }
 
-     public void addplayer(String login){
-         playerspoints.put(login,0);
-         players.add(login);
+     public void addplayer(UserInfo ui){
+         players.add(ui.login);
+         ui.scorenow=0;
+
      }
 
     Thread thread = new Thread(){
@@ -84,12 +85,14 @@ public class GameState {
          for(String nick : players){
              DatabaseHandler.getUser(nick).reload=true;
          }
-         time.set(10);
+         time.set(ROUND_LEN);
      }
 
      public void addpoint(String n){
-         Integer i=playerspoints.get(n);
-         playerspoints.replace(n,i+1);
+         UserInfo ui=DatabaseHandler.getUser(n);
+         ui.scorenow++;
+         if(ui.bestscore < ui.scorenow)
+            ui.bestscore=ui.scorenow;
      }
 
     public  void addMessage (Message m){
@@ -97,8 +100,6 @@ public class GameState {
         for(String nick : players){
             DatabaseHandler.getUser(nick).newmessage=true;
         }
-        //if(messagesList.size() > 8)
-        //messagesList.remove(0);
     }
 
     public  List<Message> getMessagesList (){

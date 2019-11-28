@@ -23,7 +23,7 @@ public class SelectGame extends HttpServlet {
 
         for(GameState gs: GameState.gamestatelist){
             if(gs.getGamename().equals(newgamename)){
-                gs.addplayer(ui.getLogin());
+                gs.addplayer(ui);
                 req.getSession().setAttribute("gamestate",gs);
                 RequestDispatcher view = req.getRequestDispatcher("main.jsp");
                 view.forward(req, resp);
@@ -33,7 +33,7 @@ public class SelectGame extends HttpServlet {
 
 
         GameState newgs= new GameState(newgamename);
-        newgs.addplayer(ui.getLogin());
+        newgs.addplayer(ui);
         GameState.gamestatelist.add(newgs);
         req.getSession().setAttribute("gamestate",newgs);
         RequestDispatcher view = req.getRequestDispatcher("main.jsp");

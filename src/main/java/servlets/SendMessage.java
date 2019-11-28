@@ -22,6 +22,7 @@ public class SendMessage extends HttpServlet {
         String start=req.getParameter("start");
         if(start != null){
             gs.roundstarted=true;
+            gs.picture.canvaURL=null;
             RequestDispatcher view = req.getRequestDispatcher("main.jsp");
             view.forward(req, resp);
             return;
@@ -31,6 +32,10 @@ public class SendMessage extends HttpServlet {
         if(newmessage.mess != null){
             if(!newmessage.mess.equals(""))
                 gs.addMessage(newmessage);
+            if(newmessage.mess.equals(gs.word) && !newmessage.nick.equals(gs.getDrawing())){
+                gs.nextround();
+                gs.addpoint(newmessage.nick);
+            }
             RequestDispatcher view = req.getRequestDispatcher("main.jsp");
             view.forward(req, resp);
             return;

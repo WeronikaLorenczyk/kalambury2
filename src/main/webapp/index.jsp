@@ -17,10 +17,10 @@
 
 
     <form action = "signin" method = "POST">
-            Login: <input type = "text" name = "login"><br>
-            Password: <input type = "password" name = "password">
-            Age: <input type = "number" name="age">
-            <input type = "submit" value = "Sign in" />
+        Login: <input type = "text" name = "login"><br>
+        Password: <input type = "password" name = "password">
+        Age: <input type = "number" name="age">
+        <input type = "submit" value = "Sign in" />
     </form>
 
 
