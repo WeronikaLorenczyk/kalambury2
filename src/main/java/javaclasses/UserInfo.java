@@ -5,6 +5,7 @@ public class UserInfo {
     String password;
     Integer age;
     public boolean reload=false;
+    public boolean newmessage=false;
 
     public UserInfo( String l, String p) {
         login=l;

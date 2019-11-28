@@ -2,6 +2,9 @@
 <%@ page import ="java.util.*" %>
 
 <html>
+<head>
+      <title>kalambury</title>
+ </head>
 
 <script>
 
@@ -23,20 +26,21 @@ var select=document.getElementById('selectgame');
 
 <body  onload="fillform()">
     <h2>
-        Hello World!
+        Select or create game!
     </h2>
 
-    Create a new game <br>
+   <h4> Create a new game <br></h4>
     <form action = "selectgame" method = "POST">
         Game name: <input type = "text" name = "gamename"><br>
         <input type = "submit" value = "Create" />
     </form>
+    <br><br>
 
-    Select game <br>
+    <h4> Select game <br></h4>
     <form action = "selectgame" method = "POST"  >
     <select  id="selectgame" name="gamename">
     </select>
-    <input type = "submit" value = "Create" />
+    <input type = "submit" value = "Select" />
     </form>
 
 

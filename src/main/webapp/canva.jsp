@@ -94,7 +94,6 @@ function save2(){
      http.setRequestHeader('Content-type','application/x-www-form-urlencoded');
      var params = 'canvasURL=' + encodeURIComponent(dataURL);
      http.send(params);
-
 }
 
 
@@ -134,20 +133,25 @@ function findxy(res, e) {
 
 </head>
 <body onload='init()'>
-
-
+<table>
+<tr>
+<th>
     <canvas id='can' width='400' height='400' style='border:2px solid;'></canvas>
+</th>
+<th>
     <div >Choose Color</div>
-    <div style='width:10px;height:10px;background:green;' id='green' onclick='color(this)'></div>
-    <div style='width:10px;height:10px;background:blue;' id='blue' onclick='color(this)'></div>
-    <div style='width:10px;height:10px;background:red;' id='red' onclick='color(this)'></div>
-    <div style='width:10px;height:10px;background:yellow;' id='yellow' onclick='color(this)'></div>
-    <div style='width:10px;height:10px;background:orange;' id='orange' onclick='color(this)'></div>
-    <div style='width:10px;height:10px;background:black;' id='black' onclick='color(this)'></div>
+    <div style='width:15px;height:15px;background:green;' id='green' onclick='color(this)'></div>
+    <div style='width:15px;height:15px;background:blue;' id='blue' onclick='color(this)'></div>
+    <div style='width:15px;height:15px;background:red;' id='red' onclick='color(this)'></div>
+    <div style='width:15px;height:15px;background:yellow;' id='yellow' onclick='color(this)'></div>
+    <div style='width:15px;height:15px;background:orange;' id='orange' onclick='color(this)'></div>
+    <div style='width:15px;height:15px;background:black;' id='black' onclick='color(this)'></div>
     <div >Eraser</div>
-    <div style='width:15px;height:15px;background:white;border:2px solid;' id='white' onclick='color(this)'></div>
+    <div style='width:20px;height:20px;background:white;border:2px solid;' id='white' onclick='color(this)'></div>
 
-    <input type='button' value='save' id='btn' size='30' onclick='save()' >
     <input type='button' value='clear' id='clr' size='23' onclick='erase()' >
+</th>
+<tr>
+</table
 </body>
 </html>

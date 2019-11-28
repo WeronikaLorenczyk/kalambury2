@@ -24,8 +24,12 @@
                         gs.nextround();
                         gs.addpoint(m.nick);
                         m.mess+=" ";
-
                         }
+                        else if(m.mess.equals(gs.word+" ")){
+                        out.println("<p style='border:5px solid green;' align='right'>"+m.nick+": "+m.mess+"</p>");
+                        }
+
+
                         else if(m.nick.equals(s.getLogin())){
                             out.println("<p style='border:2px solid tomato;' align='right'>"+m.nick+": "+m.mess+"</p>");
                         }
@@ -33,6 +37,7 @@
                             out.println("<p style='border:2px solid Violet;'>"+m.nick+": "+m.mess+"</p>");
                         }
                     }%>
+
 
    </body>
 </html>

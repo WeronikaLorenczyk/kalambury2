@@ -19,23 +19,35 @@ public class SendMessage extends HttpServlet {
 
         UserInfo info=(UserInfo) req.getSession().getAttribute("userinfo");
         GameState gs= (GameState) req.getSession().getAttribute("gamestate");
+        String start=req.getParameter("start");
+        if(start != null){
+            gs.roundstarted=true;
+            RequestDispatcher view = req.getRequestDispatcher("main.jsp");
+            view.forward(req, resp);
+            return;
+        }
+
         Message newmessage=new Message(req.getParameter("mess"),info.getLogin(), new Date(System.currentTimeMillis()));
-        if(newmessage.mess != null ){
+        if(newmessage.mess != null){
             if(!newmessage.mess.equals(""))
                 gs.addMessage(newmessage);
             RequestDispatcher view = req.getRequestDispatcher("main.jsp");
             view.forward(req, resp);
-        }
-        else {
+            return;
 
-            String result = "0";
+        }
+        String reload=req.getParameter("reload");
+        if(reload != null) {
+            String result = "";
             if (info.reload) {
-                result = "1";
+                result = "all";
                 info.reload=false;
             }
-
+            else if(info.newmessage){
+                result="messages";
+                info.newmessage=false;
+            }
             resp.getWriter().write(result);
-
         }
 
     }
