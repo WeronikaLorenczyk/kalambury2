@@ -16,7 +16,7 @@ public class GameState {
     final Integer ROUND_LEN=20;
 
      public String word;
-     public int drawingplayer=0;
+     int drawingplayer=0;
      String gamename;
     public ArrayList<String> players;
     public CanvaHandler picture;
@@ -56,25 +56,22 @@ public class GameState {
 
      }
 
-    Thread thread = new Thread(){
-
-        public void run() {
-            while (true){
-                try {
-                    sleep(1000);
-                } catch (InterruptedException e) {
-                    System.out.println("interrupted");
-                }
-                if(roundstarted) {
-                    time.decrementAndGet();
-                    if (time.get() == 0) {
-                        nextround();
-                    }
+    Thread thread = new Thread(() -> {
+        while (true){
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println("interrupted");
+            }
+            if(roundstarted) {
+                time.decrementAndGet();
+                if (time.get() == 0) {
+                    nextround();
                 }
             }
-
         }
-    };
+
+    });
 
      public void nextround(){
          System.out.println("nowa runda");
